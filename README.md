@@ -47,3 +47,34 @@ sha@eng.au.dk.)
 • Mark clearly your answers to different problems.
 
 • Clearly state your names on your hand-ins.
+
+## 2. Delivery ##
+Autumn 2016
+
+Mandatory Exercise 2
+
+Lecturer: Stefan Hallerstede <sha@eng.au.dk>,
+
+Instructor: Miran Hasanagic <miran.hasanagic@eng.au.dk>
+
+13 September 2016
+
+Hand-in: 20 September 2016
+
+Requirements
+
+### Problems ###
+
+(1) Improve the requirements and bring them into a traceable form.
+
+(2) Model the microwave oven using problem frames.
+(You have to create a context diagram and problem diagrams for the subproblems.)
+
+(3) Specify the state and the basic operations in Z.
+
+(4) Write a state chart specification for the microwave operation.
+
+(5) Annotate your models such that the requirements can be traced into them.
+
+(6) What are the advantages and disadvantages of the three models?
+Would you profit from their combined use?
