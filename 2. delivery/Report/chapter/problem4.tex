@@ -1,1 +1,11 @@
 \chapter{Problem 4}
+
+In the following chapter, a statechart will be specified, which will illustrate the different states and functionalities of the microwave oven.
+
+\section{Statechart specification}
+
+\myFigure{figure/Statechart.png}{State chart}{fig:Statechart}{1}
+
+The Microwave statechart shows the relative states of the microwave oven. After the initialization the microwave is ready for usage, as illustrated by the top box. The user can then place the food he/she wants to heat, in the microwave, however this is only if there is no food already present. 
+The microwave is then awaiting details of the desired intensity and duration of the heating, and this is specified by the user. When the necessary details are specified, the user can start the microwave. 
+It then goes into the state of “Heating food”, and it stays in this state until either the timer runs out, or the door is opened. If the door is opened, the user can either reset the timer or close the door again. A reset could be desired if the user’s food is done, but there is still time left. A reset will lead to the microwave being ready for next use. A closing of the door could be desired if the food is not yet done. In that case the microwave starts again and the timer continues. If the timer runs out, the microwave stops and is ready for next use, whether it is with the same food or not. 
