@@ -7,13 +7,13 @@ StartPushed :== TRUE | FALSE \\
 Microwave ::= ON | OFF  \\
 MicrowaveDoor ::= OPEN | CLOSED \\
 DoorSwitch ::= ON| OFF \\
-AlarmTimerOn ::= TRUE | FALSE
+AlarmTimerOn ::= TRUE | FALSE\\
 AlarmTimeCounter ::= $\mathbb{Z}$ \\
 InitialAlarmTime ::= $\mathbb{Z}$ \\
 Lamp ::= ON | OFF \\
 SoundBuzzer ::= ON | OFF \\
-ChosenIntensity ::= $Z\mathbb{N}$ \\
-CookingIntensity ::= $Z\mathbb{N}$ \\
+ChosenIntensity ::= $\{1,2,3,4,5\}$ \\
+CookingIntensity ::= $\{1,2,3,4,5\}$ \\
 
 \subsection{Init}
 
@@ -21,40 +21,39 @@ StartPushed = FALSE \\
 Microwave = OFF \\
 MicrowaveDoor = CLOSED \\
 DoorSwitch = OFF \\
-AlarmTimeCOunter = 0 \\
+AlarmTimeCounter = 0 \\
 InitialAlarmTime = 0 \\
 Lamp = OFF \\
 SounderBuzzer = OFF \\
 
-\subsection{Microwave cooking}
+\section{Microwave cooking}
 For the microwave to start an initial alarmTime must be chosen and the start button is pushed. Furthermore the door must be closed. When the timer hits 0 or lower the microwave stops. If the door is opened the microwave stops. \\
-\\
-Microwave = ON $\implies$ MicrowaveDoor = CLOSED $\wedge$ AlarmTimeCounter $\geq$ 0 $\wedge$ InitialAlarmTime $\geq$ 0  $\wedge$ StartPushed = TRUE $\wedge$ AlarmTimeCounter $\rightarrow$ 0 $\wedge$ CookingIntensity = ChosenIntensity
+
+Requirement tracing: FR-1, FR-2, FR-3 FR-5, FR-7\\
+
+Microwave = ON $\implies$ MicrowaveDoor = CLOSED $\wedge$ AlarmTimeCounter $\geq$ 0 $\wedge$ InitialAlarmTime $\geq$ 0  $\wedge$ StartPushed = TRUE $\wedge$ AlarmTimeCounter $\rightarrow$ $-5$ $\wedge$ CookingIntensity = ChosenIntensity
 
 
-\subsection{A Door Closed switch}
-Requirement: This switch indicates that the door of the microwave oven is  closed.
+\section{A Door Closed switch}
+Requirement: This switch indicates that the door of the microwave oven is  closed.\\
+
+Requirement tracing: FR-6\\
 
 DoorSwitch = ON  $\implies$ MicrowaveDoor = OPEN  \\
 DoorSwitch = CLOSED $\implies$ MicrowaveDoor = CLOSED \\
 
 
-\subsection{A Buzzer}
+\section{A Buzzer}
 Requirement: The buzzer notifies the user when the desired time has passed. \\
- \\
-SounderBuzzer = ON $\implies$ AlarmTimeCounter $<$ 0 $\wedge$ MicrowaveDoor = CLOSED \\
-SounderBuzzer = OFF $\implies$ AlarmTimeCounter $\geq$ 0 $\vee$ MicrowaveDoor = OPEN   \\
-\\
+ 
+ Requirement tracing: FR-4\\
+ 
+SounderBuzzer = ON $\implies$ AlarmTimeCounter $<$ 0 $\wedge$ AlarmTimeCounter $>$ -5 $\wedge$ MicrowaveDoor = CLOSED \\
 
-\subsection{Lamp illuminates when microwave is started}
+\section{Lamp illuminates when microwave is started}
 Requirement: When the start button is pressed then a lamp illuminates \\
-\\
-Lamp = ON  $\implies$ Microwave = ON $\wedge$ InitialAlarmTime > (AlarmTimeCounter +2) \\
 
-
-\subsection{Intensity}
-Requirement: The user can choose desired intensity \\
-\\
- = ON  $\implies$ Microwave = ON $\wedge$ InitialAlarmTime > (AlarmTimeCounter +2) \\
-
+ Requirement tracing: FR-8\\
+ 
+LAMP = ON $\implies$ StartPushed = TRUE $\wedge$ AlarmTimeCounter $>$ 0 
 
