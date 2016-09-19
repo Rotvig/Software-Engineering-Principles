@@ -61,9 +61,9 @@ Instructor: Miran Hasanagic <miran.hasanagic@eng.au.dk>
 
 Hand-in: 20 September 2016
 
-Requirements
+### Requirements ###
 
-### Problems ###
+#### Problems ####
 
 (1) Improve the requirements and bring them into a traceable form.
 
