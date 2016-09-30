@@ -18,10 +18,10 @@
 *.fdb_latexmk
 *.log
 *.out
-*.pdf
 *.synctex.gz
 *.toc
 *.tdo
 *.nlo
 *.bcf
 *.xml
+*/Report/*.pdf

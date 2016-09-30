@@ -1,0 +1,11 @@
+\chapter{Problem 4}
+
+In the following chapter, a state chart will be specified, which will illustrate the different states and functionalities of the microwave oven.
+
+\section{Statechart specification}
+
+\myFigure{figure/Statechart.png}{State chart}{fig:Statechart}{1}
+
+The Microwave state chart shows the relative states of the microwave oven. After the initialization the microwave is ready for usage.
+The microwave is then waiting for input of the desired cooking time. The user inputs the time and presses start. The microwave is then waiting for input of the desired intensity. The user inputs the intensity and presses start. 
+It then goes into the state of heating food, and it stays in this state until either the timer runs out, or the door is opened. If the door is opened, the user can either choose a new cooking time or close the door again. If the timer runs out, the microwave stops and is ready for next use, whether it is with the same food or not. 
