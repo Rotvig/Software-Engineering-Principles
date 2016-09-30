@@ -1,32 +1,135 @@
 \chapter{Problem 2}
-When modelling with problem frames it is important not to commit to early solution. Problem frames are focused on the problem solving aspect of requirements modelling. 
+\label{chp:two}
 
-\myFigure{figure/Context_Diagram.png}{Context diagram}{fig:context}{1}
+\begin{enumerate}[label=(\alph*)]
 
-The relation between the modules is explained below:
+\item  Verify the program
 
-\begin{enumerate}[label=\alph*:]
-	\item Heats the food
-	\item Shows time left
-	\item Handles the cooking time
-	\item Alerts user when microwave is done
-	\item Button that starts the microwave 
-	\item Enter time, intensity and start microwave
-	\item User input
-	\item Open/close door
-	\item Illuminates lamp when the microwave is started
-	 
+We can verify the code by introducing an invariant in the loop. The invariant must always hold.
+
+
+\begin{lstlisting}
+
+{
+	assert m == m0;
+	int i;
+	for(i=0; i<k; i++) {
+		m = m + x;
+		invariant 0 <= i <= k  /\ m == m0 + (x * k)
+	}
+	assert m == m0 + (x * k);
+}
+\end{lstlisting}
+
+
+\item Will the program always work correctly
+
+If k has a lesser value than 0 and x is not equal to 0 then the invariant will not hold. Having a k lesser than zero would also make the last assert fail as the loop would terminate after zero iterations and then m would still be equal to initial value and therefore not m0 + (x*k) assuming x is not zero.
+
+
+\item  Use the assertions to generate a unit test case for the “inner program”
+
+When generating unit tests it is important to focus on boundary cases to ensure that it is possible to actually create and run the tests within some given time frame.
+
+Code under test:
+\begin{lstlisting}
+{
+int i;
+for(i=0; i<k; i++) {
+	m = m + x;
+	}
+}
+\end{lstlisting}
+
+So in the unit tests it must generally hold that when the loop is done m must equal m+x*k. This is the assertion we are making in certain scenarios. The test scenarios are the following
+\begin{itemize}
+	\item k as positive, zero and negative
+	\item x as positive, zero and negative
+	\item m as positive, zero and negative
+\end{itemize}
+
+\begin{lstlisting}
+ [Fact]
+ public void KIsPositive()
+ {
+ int k = 5, x = 5, m = 5;
+ Assert.Equal(m+x*k, CodeUnderTest(k, x, m ));
+ }
+ 
+ [Fact]
+ public void KIsNegative()
+ {
+ int k = -1, x = 5, m = 5;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ 
+ [Fact]
+ public void KEqualsZero()
+ {
+ int k = 0, x = 5, m = 5;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ [Fact]
+ public void XIsPositive()
+ {
+ int k = 5, x = 5, m = 5;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ [Fact]
+ public void XIsZero()
+ {
+ int k = 5, x = 0, m = -5;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ [Fact]
+ public void XIsNegative()
+ {
+ int k = 5, x = -5, m = -5;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ [Fact]
+ public void MIsPositive()
+ {
+ int k = 5, x = 5, m = 5;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ [Fact]
+ public void MIsZero()
+ {
+ int k = 5, x = 0, m = 0;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ [Fact]
+ public void MIsNegative()
+ {
+ int k = 5, x = -5, m = -5;
+ Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
+ }
+ 
+ int CodeUnderTest(int k, int x, int m)
+ {
+ int i;
+ for (i = 0; i < k; i++)
+ {
+ m = m + x;
+ }
+ 
+ return m;
+ }
+\end{lstlisting}
+
+When we run the test we get the following
+\myFigure{unittests}{asdf}{asdf}{0.75}
+
+We see that the initial value of k must not be less than zero. This is also what was expected from the analysis of the verification.
 \end{enumerate}
 
-To make the best model of the system, subproblem diagrams has been made. The subproblem diagrams is divided due to which requirements the diagram fulfills. 
-The problem diagrams are listed below:
-
-\myFigure{figure/Problem_diagram1.png}{Subproblem diagram 1}{fig:prob1}{0.8}
-
-\myFigure{figure/Problem_diagram2.png}{Subproblem diagram 2}{fig:prob2}{0.8}
-
-\myFigure{figure/Problem_diagram3.png}{Subproblem diagram 3}{fig:prob3}{0.7}
-
-\myFigure{figure/Problem_diagram4.png}{Subproblem diagram 4}{fig:prob4}{0.7}
-
+\item What could be gained by combined testing and proving?
 
