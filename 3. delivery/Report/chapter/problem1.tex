@@ -1,1 +1,44 @@
 \chapter{Problem 1}
+The architecture of the system is created by dividing the system into small components. It is important to note that these should be testable, either with a hardware component or with a software interface.
+The architecture is illustrated with a diagram, showing the relation between the components. In our case the controller for the Microwave Oven is shown as the top block, as it is the center of the architecture
+
+\myFigure{Softwarearch}{Software architecture for microwave oven}{fig:software}{1} 
+
+\section{Components}
+\subsection*{Display} 
+\begin{description}
+	\item[FR-2] Display shows the desired cooking time.
+	\item[FR-3 \& FR-4] Display shows the remaining cooking time.
+\end{description}
+
+\subsection*{Buzzer}
+
+\begin{description}
+	\item[FR-4] Buzzer sounds when the timer reaches 0.
+\end{description}
+
+\subsection*{Keypad}
+
+\begin{description}
+	\item[FR-1] The user uses the Keypad to enter desired cooking intensity
+	\item[FR-2] The user uses the Keypad to enter desired cooking time
+\end{description}
+
+\subsection*{Start Button}
+
+\begin{description}
+	\item[FR-1] The Start Button is the step between the timer input and the intensity input. It is the user's way of verifying the intensity input, after the timer input has already been chosen.  
+	\item[FR-2] Like with the point above, the Start Button is used for verifying the timer input. After the timer input is chosen, the Start Button is pressed, after which the intensity can be chosen. 
+	\item[FR-7] The Start Button is used to start the Microwave Oven.
+	\item[FR-8] When the Microwave is started via the Start Button, the Lamp eluminates. 
+\end{description}
+\subsection*{Lamp}
+	\begin{description}
+		\item[FR-8] As long as the Microwave is running, the Lamp must be turned on. 
+	\end{description}
+\subsection*{Timer}
+	\begin{description}
+			\item[FR-2] The input for the Timer is chosen by the user.
+			\item[FR-3] For how long the Microwave is supposed to be running, is determined by the user through the Timer. When time is up, the Microwave stops.
+			\item[FR-4] The buzzer is linked to the Timer. When time is up, the buzzer notifies the user.
+	\end{description}
