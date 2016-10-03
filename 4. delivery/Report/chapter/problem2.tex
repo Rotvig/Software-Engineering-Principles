@@ -24,7 +24,7 @@ We can verify the code by introducing an invariant in the loop. The invariant mu
 
 \item Will the program always work correctly
 
-If k has value lower than 0 and x is not equal to 0 then the invariant will not hold. Having a k lesser than zero would also make the last assert fail as the loop would terminate after zero iterations and then m would still be equal to initial value and therefore not m0 + (x*k) assuming x is not zero.
+If k has value lower than 0 and x is not equal to 0 then the invariant will not hold. Having a k lesser than zero would also make the last assert fail as the loop would terminate after zero iterations and then m would still be equal to the initial value and therefore not $m0 + (x*k)$ assuming x is not zero.
 
 
 \item  Use the assertions to generate a unit test case for the “inner program”
@@ -41,18 +41,18 @@ for(i=0; i<k; i++) {
 }
 \end{lstlisting}
 
-So in the unit tests it must generally hold that when the loop is done m must equal m+x*k. This is the assertion we are making in certain scenarios. The test scenarios are the following
+So in the unit tests it must hold that when the loop is done m must equal m+x*k. This is the assertion we are making in certain scenarios. The test scenarios are the following
 \begin{itemize}
-	\item k as positive, zero and negative
-	\item x as positive, zero and negative
-	\item m as positive, zero and negative
+	\item k given positive value, zero and a negative value
+	\item x given positive value, zero and a negative value
+	\item m given positive value, zero and a negative value
 \end{itemize}
 
-This would result in $3^3$ unit tests to test all combinations. In this report we focus on $1/3$ of the combinations. So for each possible value of the variables we only set the other variables to a positive value. More combinations could therefore be added to the tests.
+This would result in $3^3$ unit tests to test all combinations. In this report we focus on 7 of the combinations. So for each possible value of the variables we only set the other variables to a positive value. More combinations could therefore be added to the tests.
 
 \begin{lstlisting}
  [Fact]
- public void KIsPositive()
+ public void AllValuesArePositive()
  {
 	 int k = 5, x = 5, m = 5;
 	 Assert.Equal(m+x*k, CodeUnderTest(k, x, m ));
@@ -74,44 +74,30 @@ This would result in $3^3$ unit tests to test all combinations. In this report w
  }
  
  [Fact]
- public void XIsPositive()
- {
-	 int k = 5, x = 5, m = 5;
-	 Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
- }
- 
- [Fact]
  public void XIsZero()
  {
-	 int k = 5, x = 0, m = -5;
+	 int k = 5, x = 0, m = 5;
 	 Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
  }
  
  [Fact]
  public void XIsNegative()
  {
-	 int k = 5, x = -5, m = -5;
-	 Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
- }
- 
- [Fact]
- public void MIsPositive()
- {
-	 int k = 5, x = 5, m = 5;
+	 int k = 5, x = -5, m = 5;
 	 Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
  }
  
  [Fact]
  public void MIsZero()
  {
-	 int k = 5, x = 0, m = 0;
+	 int k = 5, x = 5, m = 0;
 	 Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
  }
  
  [Fact]
  public void MIsNegative()
  {
-	 int k = 5, x = -5, m = -5;
+	 int k = 5, x = 5, m = -5;
 	 Assert.Equal(m + x * k, CodeUnderTest(k, x, m));
  }
  
@@ -122,8 +108,7 @@ This would result in $3^3$ unit tests to test all combinations. In this report w
 	 {
 		 m = m + x;
 	 }
- 
- return m;
+	 return m;
  }
 \end{lstlisting}
 
