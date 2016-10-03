@@ -1,16 +1,15 @@
 \chapter{Problem 3 - Configuration management strategy}
 For developing the software for this project it has been chosen to use Git as a distributed revision control system.
-This is used for centralized the source code and help maintain the project with keeping a record of all the work in the project.
-To do this in a good way the project needs a configuration management strategy so Git can be as efficient as possible 
+This is used for centralizing the source code and help maintain the project with keeping a record of all the work in the project.
+The project needs a configuration management strategy such that Git can be as efficient as possible.
 
 The project will be divided into two main branches with an infinite lifetime. The two branches will be called:
 \begin{itemize}  
 	\item Master
 	\item Develop
 \end{itemize}
-The master branch should be familiar to every Git user and parallel to it should the developer branch be.
-The source code in the master branch should be production-ready and all the testing will be done on this branch. In the developer branch, the source code should reflect the latest change for the next release.
-There must not be any errors in the code. It has to be able to compile before merging it to the master branch.
+The master branch and develop branch should be familiar to all developers.
+The source code in the master branch should be production ready and all the testing will be done on this branch. In the developer branch, the source code should reflect the latest change for the next release.  It has to be able to compile before merging it to the master branch.
 
 Due to the project size it is not necessary to split the developer branch up in support branches due to each software component.
-Each software component will be time estimated so it has and estimate on how many hours it will take a developer to develop it. 
+Each software component will be time estimated.
